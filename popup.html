@@ -4,23 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Summarizer</title>
-  </head>
-  <body
-    style="
-      min-width: 200px;
-      padding: 10px;
-      position: relative;
-      font-family: sans-serif;
-    "
-  >
-    <select id="summary-type">
-      <option value="brief">Brief</option>
-      <option value="detailed">Detailed</option>
-      <option value="bullets">Bullet Points</option>
-    </select>
+    <style>
+      body {
+        min-width: 400px;
+        padding: 10px;
+        position: relative;
+        font-family: sans-serif;
+      }
 
-    <button id="summarize">Summarize</button>
-    <button id="copy-btn">Copy</button>
+      .option {
+        display: flex;
+        flex-direction: column;
+        column-gap: 1rem;
+      }
+      #summarize {
+        background-color: rgb(66, 140, 231);
+        color: white;
+        padding: 0.5rem;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      #copy-btn {
+        background-color: rgb(34, 171, 89);
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: white;
+        padding: 0.5rem;
+        transition: opacity 0.2s ease-in-out;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      #summary-type {
+        padding: 0.45rem;
+        border-radius: 5px;
+        border: 1px solid #a8b0b0;
+        outline: none;
+      }
+      #result {
+        border-radius: 5px;
+        border: 1px solid #a8b0b0;
+        padding: 0.45rem;
+        min-height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Ai Summary</h2>
+    <div class="options">
+      <select id="summary-type">
+        <option value="brief">Brief</option>
+        <option value="detailed">Detailed</option>
+        <option value="bullets">Bullet Points</option>
+      </select>
+
+      <button id="summarize">Summarize</button>
+      <button id="copy-btn">Copy</button>
+    </div>
 
     <pre id="result">Select a type and click Summarize...</pre>
     <script src="popup.js"></script>
