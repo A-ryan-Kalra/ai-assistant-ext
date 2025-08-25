@@ -4,8 +4,89 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Extension Options</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        padding: 2rem;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+
+        min-width: 600px;
+      }
+      h1 {
+        color: rgb(108, 191, 243);
+        font-size: xx-large;
+      }
+      .form-group {
+        width: 100%;
+      }
+      #api-key {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8rem;
+        font-weight: 700;
+        row-gap: 5px;
+      }
+      input[type="text"] {
+        padding: 0.5rem;
+        width: auto;
+        border-radius: 5px;
+        border: 1px solid #d6d5d5;
+        outline: none;
+      }
+      p {
+        font-size: small;
+      }
+      #save-button {
+        /* font-size: 0.8rem; */
+        background-color: rgb(76, 153, 229);
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        transition: opacity 0.2s ease-in-out;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      #success-message {
+        display: none;
+        color: green;
+      }
+    </style>
   </head>
   <body>
-    Hello
+    <div class="container">
+      <h1>AI Summary Settings</h1>
+      <div class="form-group">
+        <label id="api-key"
+          >Gemini Api Key
+          <input
+            type="text"
+            id="api-key-inp"
+            placeholder="Enter your Gemini API Key"
+          />
+        </label>
+        <p>
+          You can get an Api Key from
+          <a href="https://makersuite.google.com/app/apikey" target="_blank">
+            Google AI Studio
+          </a>
+        </p>
+      </div>
+      <button id="save-button">Save Settings</button>
+      <p id="success-message" class="success-message">
+        Settings saved successfully!
+      </p>
+    </div>
+    <script src="option.js"></script>
   </body>
 </html>
