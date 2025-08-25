@@ -1,22 +1,24 @@
 const summarizeEl = document.getElementById("summarize");
+const detailEl = document.getElementById("details");
 
 summarizeEl.addEventListener("click", () => {
   const resultEl = document.getElementById("result");
   const summaryType = document.getElementById("summary-type").value;
 
-  resultEl.innerHTML = `<div class="loader"></div>`;
+  // resultEl.innerHTML = `<div class="loader"></div>`;
 
   chrome.storage.sync.get(["geminiApiKey"], ({ geminiApiKey }) => {
     if (!geminiApiKey) {
-      resultEl.textContent = "No Api Key set. Click the gear icon to add one.";
+      resultEl.textContent = "No Api Key set. Please add one";
       return;
     }
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
       chrome.tabs.sendMessage(
         tab.id,
-        { type: "GET_ARTICLE_TEXT" },
-        async ({ text }) => {
-          if (!text) {
+        { type: summaryType === "others" ? "GET_CONTEXT" : "GET_ARTICLE_TEXT" },
+        async (props) => {
+          const text = props?.text ?? resultEl?.textContent;
+          if (!text && summaryType !== "others") {
             resultEl.textContent = "Couldn't extract text from this page.";
             return;
           }
@@ -44,7 +46,7 @@ async function getGeminiSummary(rawText, type, apiKey) {
     brief: `Summarize in 2-3 sentence:\n\n${text}`,
     detailed: `Give a detailed summary:\n\n${text}`,
     bullets: `Summarize in 5-7 bullet points (start each line with "- "):\n\n${text}`,
-    others: text,
+    others: `${detailEl?.value}\n ${text}`,
   };
   const prompt = promptMap[type] || promptMap.brief;
   const res = await fetch(
@@ -73,12 +75,15 @@ document.getElementById("copy-btn").addEventListener("click", () => {
   const text = document.getElementById("result").textContent.trim();
 
   if (!text) return;
-  navigator.clipboard.writeText(text).then(() => {
-    const button = document.getElementById("copy-btn");
-    const old = button.textContent;
-    button.textContent = "Copied";
-    setTimeout(() => (button.textContent = old), 1000);
-  });
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      const button = document.getElementById("copy-btn");
+      const old = button.textContent;
+      button.textContent = "Copied";
+      setTimeout(() => (button.textContent = old), 1000);
+    })
+    .catch((err) => console.error("error occured", err));
 });
 document.getElementById("paste-btn").addEventListener("click", async () => {
   await copyfromClipboard();
@@ -88,11 +93,10 @@ async function copyfromClipboard() {
   const button = document.getElementById("paste-btn");
   const old = button.textContent;
   try {
-    await navigator.clipboard.readText().then((paste) => {
-      button.textContent = "Pasted";
-      document.getElementById("result").textContent = paste;
-      setTimeout(() => (button.textContent = old), 1000);
-    });
+    const paste = await navigator.clipboard.readText();
+    button.textContent = "Pasted";
+    document.getElementById("result").textContent = paste;
+    setTimeout(() => (button.textContent = old), 1000);
   } catch (error) {
     if (error.name === "NotAllowedError") {
       button.textContent = "Not Allowed";
@@ -103,3 +107,8 @@ async function copyfromClipboard() {
     }
   }
 }
+document.getElementById("summary-type").addEventListener("change", (event) => {
+  if (event.target.value === "others") {
+    document.getElementById("details").style.display = "block";
+  }
+});

@@ -12,7 +12,7 @@
         padding-bottom: 1.5rem;
         position: relative;
         font-family: sans-serif;
-        max-height: 300px;
+        max-height: 400px;
       }
 
       .option {
@@ -81,6 +81,16 @@
         height: 30px;
         animation: spin 1s linear infinite;
       }
+      input[type="text"] {
+        padding: 0.3rem;
+        display: none;
+        margin-top: 10px;
+        width: auto;
+        border-radius: 5px;
+        border: 1px solid #d6d5d5;
+        outline: none;
+        font-size: small;
+      }
 
       @keyframes spin {
         0% {
@@ -99,13 +109,14 @@
         <option value="brief">Brief</option>
         <option value="detailed">Detailed</option>
         <option value="bullets">Bullet Points</option>
-        <option value="others">Other</option>
+        <option value="others">Others</option>
       </select>
 
       <button id="summarize">Summarize</button>
       <button id="copy-btn">Copy</button>
       <button id="paste-btn">Paste</button>
     </div>
+    <input type="text" id="details" placeholder="Give extra details" />
 
     <pre id="result">Select a type and click Summarize...</pre>
     <script src="popup.js"></script>

@@ -10,8 +10,9 @@ function getArticle() {
 }
 
 chrome.runtime.onMessage.addListener((req, _sender, sendResponse) => {
+  let text = "";
   if (req.type === "GET_ARTICLE_TEXT") {
-    const text = getArticle();
+    text = getArticle();
 
     sendResponse({ text });
   }
