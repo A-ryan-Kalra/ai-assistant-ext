@@ -2,13 +2,7 @@
   "manifest_version": 3,
   "name": "AI Summary for Acrticles",
   "version": "1.0",
-  "permissions": [
-    "scripting",
-    "activeTab",
-    "storage",
-    "clipboardRead",
-    "clipboardWrite"
-  ],
+  "permissions": ["activeTab", "storage", "clipboardRead", "clipboardWrite"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": "summary.png"
