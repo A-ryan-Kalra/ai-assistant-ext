@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("save-button").addEventListener("click", () => {
     const apiKey = document.getElementById("api-key-inp").value.trim();
     if (!apiKey) return;
-
-    document.getElementById("success-message").style.display = "block";
+    chrome.storage.sync.set({ geminiApiKey: apiKey }, () => {
+      document.getElementById("success-message").style.display = "block";
+      setTimeout(() => window.close(), 1000);
+    });
   });
 });
