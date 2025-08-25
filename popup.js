@@ -5,19 +5,22 @@ summarizeEl.addEventListener("click", () => {
   const resultEl = document.getElementById("result");
   const summaryType = document.getElementById("summary-type").value;
 
-  // resultEl.innerHTML = `<div class="loader"></div>`;
+  const textContent = resultEl?.textContent;
+  resultEl.innerHTML = `<div class="loader"></div>`;
 
   chrome.storage.sync.get(["geminiApiKey"], ({ geminiApiKey }) => {
     if (!geminiApiKey) {
       resultEl.textContent = "No Api Key set. Please add one";
       return;
     }
+
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
       chrome.tabs.sendMessage(
         tab.id,
         { type: summaryType === "others" ? "GET_CONTEXT" : "GET_ARTICLE_TEXT" },
         async (props) => {
-          const text = props?.text ?? resultEl?.textContent;
+          const text = props?.text?.trim() ?? textContent;
+
           if (!text && summaryType !== "others") {
             resultEl.textContent = "Couldn't extract text from this page.";
             return;
@@ -41,7 +44,8 @@ summarizeEl.addEventListener("click", () => {
 
 async function getGeminiSummary(rawText, type, apiKey) {
   const max = 20000;
-  const text = rawText.length > max ? rawText.slice(0, max) + "...." : rawText;
+  // const text = rawText.length > max ? rawText.slice(0, max) + "...." : rawText;
+  const text = rawText;
   const promptMap = {
     brief: `Summarize in 2-3 sentence:\n\n${text}`,
     detailed: `Give a detailed summary:\n\n${text}`,
@@ -49,6 +53,7 @@ async function getGeminiSummary(rawText, type, apiKey) {
     others: `${detailEl?.value}\n ${text}`,
   };
   const prompt = promptMap[type] || promptMap.brief;
+  console.log("prompt", prompt);
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
     {
