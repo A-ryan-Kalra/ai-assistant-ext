@@ -8,7 +8,7 @@
 
 <br/>
 
-| Format            | Images           |   Type   |
+| Format            | Images           |   Description   |
 | -                 | :-:              | :-       | 
 | Brief             | <img width="300" height="300" alt="dashboard" src="https://github.com/user-attachments/assets/83a89f1e-10cc-43ff-8d00-fd06a0d8ffa9" />   |   Show data in a brief as much as possible.     |
 | Detailed          | <img width="300" height="300" alt="comments" src="https://github.com/user-attachments/assets/6f2c5441-8634-4b1c-a9fd-9a9aeff505cd"/> |  As the name suggests, It covers wide range of topics.      |
