@@ -38,6 +38,23 @@ Simply paste the content to help you with soltions.
 
 <br/>
 
+# ⚙️ Usage & 🎹 Keywords
+1. `Submit` - Press on submit button It will automatically detect the articels and genereate the response as per formats.
+2. `Copy` - The content from the extension.
+3. `Paste` - Pressing on paste will simply paste the contents into mini-bar from your clip-pad.
+4. `Others` - This format is used to perform different functionality conisder it like a chat-bot regardless previous formats.
+
+<br/>
+
+# 🔐 Enter Api-Key
+> [!IMPORTANT]
+> 1. Before you can access your mini-extension, you first need to enter your Gemini API key.
+> 2. You can easily create your api-key by clicking on Google Ai Studio.
+
+
+<img width="600" height="662" alt="Screenshot 2025-08-26 at 10 35 22 AM" src="https://github.com/user-attachments/assets/42e5798a-5d3f-42bb-bcc2-99e1acab7d68" />
+
+
 # 🛠 Installation
 
 1. Clone or download this repository:
