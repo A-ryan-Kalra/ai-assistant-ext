@@ -8,6 +8,7 @@ summarizeEl.addEventListener("click", () => {
   const textContent = resultEl?.textContent;
   resultEl.innerHTML = `<div class="loader"></div>`;
 
+  // Set Api keys otherwise make one
   chrome.storage.sync.get(["geminiApiKey"], ({ geminiApiKey }) => {
     if (!geminiApiKey) {
       resultEl.textContent =
@@ -15,9 +16,11 @@ summarizeEl.addEventListener("click", () => {
       return;
     }
 
+    //generate context inside current running tab via gemini ai.
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
       chrome.tabs.sendMessage(
         tab.id,
+        //Put conditionals to use as a chat-bot other than keeping it limited to summary context.
         { type: summaryType === "others" ? "GET_CONTEXT" : "GET_ARTICLE_TEXT" },
         async (props) => {
           const text = props?.text?.trim() ?? textContent;
@@ -44,7 +47,7 @@ summarizeEl.addEventListener("click", () => {
 });
 
 async function getGeminiSummary(rawText, type, apiKey) {
-  const max = 20000;
+  // const max = 20000;
   // const text = rawText.length > max ? rawText.slice(0, max) + "...." : rawText;
   const text = rawText;
   const promptMap = {
@@ -80,6 +83,8 @@ async function getGeminiSummary(rawText, type, apiKey) {
 document.getElementById("copy-btn").addEventListener("click", () => {
   const text = document.getElementById("result").textContent.trim();
 
+  //Write the generated content to the user's clip-board.
+
   if (!text) return;
   navigator.clipboard
     .writeText(text)
@@ -94,6 +99,8 @@ document.getElementById("copy-btn").addEventListener("click", () => {
 document.getElementById("paste-btn").addEventListener("click", async () => {
   await copyfromClipboard();
 });
+
+//Read the content from the user's clip-board
 
 async function copyfromClipboard() {
   const button = document.getElementById("paste-btn");
