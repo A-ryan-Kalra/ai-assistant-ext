@@ -5,14 +5,16 @@
 </div>
 
 **A simple Extension that helps you summarize a long articles in multiple formats and helps you with many solutions.**
+ 
+ 
 
 <br/>
 
 | Format            | Images           |   Description   |
 | -                 | :-:              | :-       | 
-| Brief             | <img width="300" height="300" alt="dashboard" src="https://github.com/user-attachments/assets/83a89f1e-10cc-43ff-8d00-fd06a0d8ffa9" />   |   Show data in a brief as much as possible.     |
-| Detailed          | <img width="300" height="300" alt="comments" src="https://github.com/user-attachments/assets/6f2c5441-8634-4b1c-a9fd-9a9aeff505cd"/> |  As the name suggests, It covers wide range of topics.      |
-| Bullet Points       | <img width="300" height="300" alt="users" src="https://github.com/user-attachments/assets/d638726a-6038-4846-8883-fdac52a85956" /> |   List all the details in bullets.|
+| Brief             | <img width="300" height="300" alt="dashboard" src="https://github.com/user-attachments/assets/61745299-f4cd-4bae-bc81-6df080016286" />   |   Show data in a brief as much as possible.     |
+| Detailed          | <img width="300" height="300" alt="comments" src="https://github.com/user-attachments/assets/836176d3-2bb7-4565-9188-4bda257d71e7"/> |  As the name suggests, It covers wide range of topics.      |
+| Bullet Points       | <img width="300" height="300" alt="users" src="https://github.com/user-attachments/assets/b67f28b2-27cb-4f6a-b8e0-f2b10ccf03b5" /> |   List all the details in bullets.|
 | Others              | <img width="300" height="300" alt="listings" src="https://github.com/user-attachments/assets/2cbf309e-7e0a-46f1-8c00-6eaa1c383d21" />   |   Ask anything     |
 
 
