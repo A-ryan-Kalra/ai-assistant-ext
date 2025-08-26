@@ -10,7 +10,8 @@ summarizeEl.addEventListener("click", () => {
 
   chrome.storage.sync.get(["geminiApiKey"], ({ geminiApiKey }) => {
     if (!geminiApiKey) {
-      resultEl.textContent = "No Api Key set. Please add one";
+      resultEl.textContent =
+        "No Api-Key set. Please add one by clicking on gear icon.";
       return;
     }
 
@@ -116,4 +117,8 @@ document.getElementById("summary-type").addEventListener("change", (event) => {
   if (event.target.value === "others") {
     document.getElementById("details").style.display = "block";
   }
+});
+
+document.getElementById("gear").addEventListener("click", () => {
+  chrome.tabs.create({ url: "options.html" });
 });

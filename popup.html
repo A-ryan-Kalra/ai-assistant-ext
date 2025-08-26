@@ -34,6 +34,11 @@
       }
       #copy-btn {
         background-color: rgb(34, 171, 89);
+      }
+      #paste-btn {
+        background-color: rgb(171, 34, 130);
+      }
+      .property {
         border-radius: 5px;
         outline: none;
         border: none;
@@ -45,18 +50,10 @@
           opacity: 0.7;
         }
       }
-      #paste-btn {
-        background-color: rgb(171, 34, 130);
-        border-radius: 5px;
-        outline: none;
-        border: none;
-        cursor: pointer;
+      #gear {
         color: white;
-        padding: 0.5rem;
-        transition: opacity 0.2s ease-in-out;
-        &:hover {
-          opacity: 0.7;
-        }
+        font-size: small;
+        background-color: #797575;
       }
       #summary-type {
         padding: 0.45rem;
@@ -116,8 +113,9 @@
       </select>
 
       <button id="summarize">Submit</button>
-      <button id="copy-btn">Copy</button>
-      <button id="paste-btn">Paste</button>
+      <button id="copy-btn" class="property">Copy</button>
+      <button id="paste-btn" class="property">Paste</button>
+      <button id="gear" class="property">⚙</button>
     </div>
     <input type="text" id="details" placeholder="Give extra details" />
 
