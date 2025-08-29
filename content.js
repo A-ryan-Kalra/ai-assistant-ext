@@ -5,7 +5,8 @@ function getArticle() {
     return article.innerText;
   }
 
-  const paragraphs = Array.from(document.querySelector("p"));
+  const paragraphs = Array.from(document.querySelectorAll("p"));
+
   return paragraphs.map((para) => para.innerText).join("\n");
 }
 
